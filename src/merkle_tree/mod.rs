@@ -3,6 +3,7 @@ pub mod tree;
 pub mod utils;
 pub mod entry;
 pub mod mt;
+pub mod tests;
 use halo2_proofs::halo2curves::bn256::Fr as Fp;
 
 /// A struct representing a Merkle Proof.

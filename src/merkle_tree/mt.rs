@@ -14,11 +14,8 @@ use num_bigint::BigUint;
 /// * The Root Node represents the committed state of the Tree and contains the sum of all the entries' balances per each cryptocurrency.
 ///
 /// # Type Parameters
-///
-/// * `N_CURRENCIES`: The number of cryptocurrencies for each user account
-/// * `N_BYTES`: Range in which each node balance should lie
 #[derive(Debug, Clone)]
-pub struct MerkleTree<const N_BYTES: usize> {
+pub struct MerkleTree {
     root: Node,
     nodes: Vec<Vec<Node>>,
     depth: usize,
@@ -26,8 +23,8 @@ pub struct MerkleTree<const N_BYTES: usize> {
     is_sorted: bool,
 }
 
-impl<const N_BYTES: usize> Tree
-    for MerkleTree<N_BYTES>
+impl Tree
+    for MerkleTree
 {
     fn root(&self) -> &Node {
         &self.root
@@ -46,7 +43,7 @@ impl<const N_BYTES: usize> Tree
     }
 }
 
-impl<const N_BYTES: usize> MerkleTree<N_BYTES> {
+impl MerkleTree {
     /// Returns the leaves of the tree
     pub fn leaves(&self) -> &[Node] {
         &self.nodes[0]
@@ -84,7 +81,7 @@ impl<const N_BYTES: usize> MerkleTree<N_BYTES> {
     pub fn from_entries(
         mut entries: Vec<Entry>,
         is_sorted: bool,
-    ) -> Result<MerkleTree<N_BYTES>, Box<dyn std::error::Error>>
+    ) -> Result<MerkleTree, Box<dyn std::error::Error>>
     {
         let depth = (entries.len() as f64).log2().ceil() as usize;
 
@@ -118,7 +115,7 @@ impl<const N_BYTES: usize> MerkleTree<N_BYTES> {
         is_sorted: bool,
     ) -> Result<Self, Box<dyn std::error::Error>>
     {
-        Ok(MerkleTree::<N_BYTES> {
+        Ok(MerkleTree {
             root,
             nodes,
             depth,

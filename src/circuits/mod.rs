@@ -1,6 +1,8 @@
-// pub mod merkle_sum_tree;
+pub mod merkle_tree;
 // mod tests;
 pub mod traits;
+pub mod utils;
+pub mod types;
 // pub mod types;
 // pub mod utils;
 
