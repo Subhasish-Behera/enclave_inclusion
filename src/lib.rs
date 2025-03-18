@@ -9,3 +9,5 @@ pub mod chips;
 pub mod circuits;
 /// Utilities to build the merkle sum tree data structure. No zk proof in here.
 pub mod merkle_tree;
+pub mod poseidon_native;
+// mod params;
